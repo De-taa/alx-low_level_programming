@@ -1,6 +1,7 @@
 #include <stdio.h>
 /**
  * main - A prgram that prints the various computer and compiler types
+ *
  * Return 0 (Success)
  */
 int main(void)
