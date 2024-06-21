@@ -1,30 +1,18 @@
-#include <stdio.h>
-
-int main(void) {
-    printf("Hello, world!\n");
-    return 0;
-}
 #!/bin/bash
 
-# Set CFILE to the specified value
 CFILE="${CFILE:-main.c}"
 
-# Check if CFILE exists
 if [ ! -f "$CFILE" ]; then
     echo "Error: C file '$CFILE' does not exist."
     exit 1
 fi
 
-# Get the base name of the C file (without extension)
 BASENAME=$(basename "$CFILE" .c)
 
-# Generate the output file name with .s extension
 OUTPUT_FILE="$BASENAME.s"
 
-# Generate the assembly code in Intel syntax and save to the output file
 gcc -S -masm=intel "$CFILE" -o "$OUTPUT_FILE"
 
-# Check if the assembly file was created successfully
 if [ -f "$OUTPUT_FILE" ]; then
     echo "Assembly code saved to $OUTPUT_FILE"
 else
