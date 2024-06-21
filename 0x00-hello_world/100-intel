@@ -1,24 +1,4 @@
 #!/bin/bash
 
-if [ -z "$CFILE" ]; then
-    echo "Error: CFILE variable is not set or empty."
-    exit 1
-fi
-
-if [ ! -f "$CFILE" ]; then
-    echo "Error: C file '$CFILE' does not exist."
-    exit 1
-fi
-
-BASENAME=$(basename "$CFILE" .c)
-OUTPUT_FILE="$BASENAME.s"
-
-gcc -S -masm=intel "$CFILE" -o "$OUTPUT_FILE"
-
-if [ -f "$OUTPUT_FILE" ]; then
-    echo "Assembly code saved to $OUTPUT_FILE"
-else
-    echo "Error: Failed to generate assembly code."
-    exit 1
-fi
+gcc -S -masm=intel "$CFILE" -o "${CFILE%.c}.s"
 
