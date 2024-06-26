@@ -1,42 +1,27 @@
 #include <stdio.h>
 
 /**
- * print_fibonacci_sequence - Prints the first 50 Fibonacci numbers.
+ * main - function to find first 50 fibonacci sequence
+ * Return: 0
  */
-void print_fibonacci_sequence(void)
-{
-	int n = 50; /* Number of Fibonacci numbers to generate */
-	unsigned long long fib1 = 1, fib2 = 2, next_term;
-	int i;
 
-	/* Print the first two Fibonacci numbers */
-	printf("%llu, %llu, ", fib1, fib2);
-
-	/* Generate and print the rest of the Fibonacci sequence */
-	for (i = 3; i <= n; ++i)
-	{
-		next_term = fib1 + fib2;
-		printf("%llu", next_term);
-		if (i < n)
-		{
-			printf(", ");
-		}
-		else
-		{
-			printf("\n");
-		}
-		fib1 = fib2;
-		fib2 = next_term;
-	}
-}
-
-/**
- * main - Entry point
- *
- * Return: Always 0 (Success)
- */
 int main(void)
 {
-	print_fibonacci_sequence();
+	unsigned long int term1 = 1;
+	unsigned long int term2 = 2;
+	unsigned long int next;
+	int i;
+
+	printf("%lu, ", term1);
+	for (i = 1 ; i < 50 ; i++)
+	{
+		printf("%lu", term2);
+		next = term1 + term2;
+		term1 = term2;
+		term2 = next;
+		if (i != 49)
+			printf(", ");
+	}
+	printf("\n");
 	return (0);
 }
