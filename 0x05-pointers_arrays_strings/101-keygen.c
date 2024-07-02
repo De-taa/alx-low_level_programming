@@ -4,10 +4,8 @@
 
 /**
  * main - generates a random valid password for 101-crackme
- * passwords for the program 101-crackme
  * Return: Always 0
  */
-
 int main(void)
 {
 	int pass[100];
@@ -19,16 +17,23 @@ int main(void)
 
 	for (i = 0; i < 100; i++)
 	{
-		pass[i] = rand() % 78;
-		sum += (pass[i] + '0');
-		putchar(pass[1] + '0');
-		if ((2772 - sum) - '0' < 78)
+		pass[i] = rand() % 62;
+		sum += pass[i];
+
+		if ((2772 - sum) < 62)
 		{
-			n = 2772 - sum - '0';
-			sum += n;
-			putchar(n + '0');
+			n = 2772 - sum;
+			pass[i] = n;
 			break;
 		}
 	}
-	return (0);
+	for (i = 0; i < 100; i++)
+	{
+		if (pass[i] == 0)
+			break;
+		putchar(pass[i] + (pass[i] < 10 ? '0' : (pass[i] < 36 ? 'A' - 10 : 'a' - 36)));
+	}
+	putchar('\n');
+
+	return 0;
 }
